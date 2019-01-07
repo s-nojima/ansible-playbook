@@ -1,0 +1,7 @@
+- name: docker pre package install
+  yum: name="{{ item }}"
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+  tags: yum

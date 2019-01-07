@@ -1,4 +1,5 @@
 ---
-- hosts: platform
+- hosts: redc-platform
   roles:
     - common
+    - docker
