@@ -12,3 +12,24 @@
   copy: src="authorized_keys_for_{{item.name}}" dest="/home/{{item.name}}/.ssh/authorized_keys" owner={{item.name}} group={{item.name}} mode=0600
   with_items: '{{ users }}'
   tags: users
+
+- name: firewall is disabled and stop
+  service: name=firewalld state=stopped enabled=no
+  tags: iptables
+
+- name: install the latest version of iptables-service
+  yum: name=iptables-services state=latest
+  tags: iptables
+
+- name: iptables is enabled and started
+  service: name=iptables state=running enabled=yes
+  tags: iptables
+
+- name: iptables is configured
+  template: src="iptables" dest="/etc/sysconfig/iptables" owner=root group=root mode=0600
+  notify:
+    - restart iptables
+  tags: iptables
+
+- name: restart iptables
+  systemd: name=iptables state=restarted 
