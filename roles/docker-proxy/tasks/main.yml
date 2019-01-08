@@ -1,0 +1,23 @@
+#- name: nginx-proxy container
+#  docker:
+#    name: nginx-proxy
+#    image: jwilder/nginx-proxy
+#    state: started
+#    ports:
+#    - "80:80"
+#    - "443:443"
+#    volumes_from:
+#    - /path/to/certs:/etc/nginx/certs:ro
+#    - /etc/nginx/vhost.d
+#    - /usr/share/nginx/html
+#    - /var/run/docker.sock:/tmp/docker.sock:ro
+#
+#- name: letsencrypt-nginx-proxy-companion
+#  docker:
+#    name: letsencrypt-nginx-proxy-companion
+#    image: jrcs/letsencrypt-nginx-proxy-companion
+#    state: started
+#    volumes_from:
+#    - /path/to/certs:/etc/nginx/certs:rw \
+#    - /var/run/docker.sock:/var/run/docker.sock:ro \
+#    - nginx-proxy \
