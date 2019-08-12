@@ -1,0 +1,5 @@
+- name: standard package install
+  yum: name="{{ item }}"
+  with_items:
+    - whois
+  tags: yum
