@@ -1,2 +1,5 @@
 users:
   - { name: red-c, password: "$1$r.GQo4ZH$aIl.lFnDa33CL.aZcGwTM0", groups: "wheel" }
+open_ports:
+  - 80
+  - 443
