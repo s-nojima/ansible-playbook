@@ -16,8 +16,8 @@
     protocol: tcp
     destination_port: 80
     jump: ACCEPT
-  become: yes
-  register: port_forward
+    action: insert
+    rule_num: 4
   tags: iptables
 
 - name: open port 443
@@ -26,14 +26,24 @@
     protocol: tcp
     destination_port: 443
     jump: ACCEPT
-  become: yes
-  register: port_forward
+    action: insert
+    rule_num: 4
+  tags: iptables
+
+- name: Set the policy for the INPUT chain to DROP
+  iptables:
+    chain: INPUT
+    policy: DROP
+  tags: iptables
+
+- name: Set the policy for the FORWARD chain to DROP
+  iptables:
+    chain: FORWARD
+    policy: DROP
   tags: iptables
 
 - name: save iptables
   shell: iptables-save > /etc/sysconfig/iptables
-  become: true
-  when: port_forward|changed
   tags: iptables
 
 - name: restart iptables
