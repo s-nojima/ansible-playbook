@@ -2,3 +2,4 @@
 development
 *.hosts
 *.retry
+*.swp
