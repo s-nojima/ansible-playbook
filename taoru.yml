@@ -1,0 +1,4 @@
+---
+- hosts: taoru-web
+  roles:
+    - common
