@@ -1,0 +1,4 @@
+---
+- hosts: redc-nostock
+  roles:
+    - common
